@@ -3,12 +3,19 @@ local UiLib = {}
 local UserInputService = game:GetService('UserInputService')
 
 function UiLib:NewWindow(_Title, _CanDrag, _CanToggle, _ToggleKeybind)
+	print(1)
 	if _Title == nil or typeof(_Title) ~= 'string' then return nil end
+	print(2)
 	if _CanDrag == nil or typeof(_CanDrag) ~= 'boolean' then return nil end
+	print(3)
 	if _CanToggle == nil or typeof(_CanToggle) ~= 'boolean' then return nil end
+	print(4)
 	if _CanToggle then
+	print(5)
 		if _ToggleKeybind == nil or typeof(_ToggleKeybind) ~= 'Enum' then return nil end
+		print(6)
 	end
+	print(7)
 	
 	local UILibrary = Instance.new("ScreenGui")
 	local Topbar = Instance.new("ImageLabel")
