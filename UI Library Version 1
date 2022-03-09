@@ -1,0 +1,136 @@
+local UiLib = {}
+
+local UserInputService = game:GetService('UserInputService')
+
+function UiLib:NewWindow(_Title, _CanDrag, _CanToggle, _ToggleKeybind)
+	if _Title == nil or typeof(_Title) ~= 'string' then return nil end
+	if _CanDrag == nil or typeof(_CanDrag) ~= 'boolean' then return nil end
+	if _CanToggle == nil or typeof(_CanToggle) ~= 'boolean' then return nil end
+	if _CanToggle then
+		if _ToggleKeybind == nil or typeof(_ToggleKeybind) ~= 'Enum' then return nil end
+	end
+	
+	local UILibrary = Instance.new("ScreenGui")
+	local Topbar = Instance.new("ImageLabel")
+	local TabsBackground = Instance.new("Frame")
+	local TabsList = Instance.new("Frame")
+	local UIListLayout = Instance.new("UIListLayout")
+	local Body = Instance.new("Frame")
+	local BottomRound = Instance.new("ImageLabel")
+	local LowerCover = Instance.new("Frame")
+	local UpperCover = Instance.new("Frame")
+	local Title = Instance.new("TextLabel")
+
+	local RandomString = function()
+		local Length = math.random(25, 50)
+		local Characters = {}
+
+		for i = 1, Length do
+			table.insert(Characters, string.char(math.random(1, 126)))
+		end
+
+		return table.concat(Characters)
+	end
+
+	UILibrary.Name = RandomString
+
+	syn.protect_gui(UILibrary)
+
+	UILibrary.Parent = game.CoreGui
+
+	Topbar.Name = "Topbar"
+	Topbar.Parent = UILibrary
+	Topbar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Topbar.BackgroundTransparency = 1.000
+	Topbar.BorderSizePixel = 0
+	Topbar.Position = UDim2.new(0.254222989, 0, 0.155258775, 0)
+	Topbar.Size = UDim2.new(0.440033793, 0, 0.0751252025, 0)
+	Topbar.Image = "rbxassetid://3570695787"
+	Topbar.ImageColor3 = Color3.fromRGB(33, 33, 33)
+	Topbar.ScaleType = Enum.ScaleType.Slice
+	Topbar.SliceCenter = Rect.new(100, 100, 100, 100)
+	Topbar.SliceScale = 0.120
+
+	TabsBackground.Name = "TabsBackground"
+	TabsBackground.Parent = Topbar
+	TabsBackground.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+	TabsBackground.BorderSizePixel = 0
+	TabsBackground.Position = UDim2.new(0, 0, 0.447368234, 0)
+	TabsBackground.Size = UDim2.new(0.255278319, 0, 6.66666794, 0)
+
+	TabsList.Name = "TabsList"
+	TabsList.Parent = TabsBackground
+	TabsList.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TabsList.BackgroundTransparency = 1.000
+	TabsList.Position = UDim2.new(0.0601503775, 0, 0.082894735, 0)
+	TabsList.Size = UDim2.new(0.866918027, 0, 0.917105317, 0)
+
+	UIListLayout.Parent = TabsList
+	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	UIListLayout.Padding = UDim.new(0, 6)
+
+	Body.Name = "Body"
+	Body.Parent = Topbar
+	Body.BackgroundColor3 = Color3.fromRGB(42, 42, 42)
+	Body.BorderSizePixel = 0
+	Body.Position = UDim2.new(0.255278319, 0, 0.980701625, 0)
+	Body.Size = UDim2.new(0.744721711, 0, 6.13333464, 0)
+
+	BottomRound.Name = "BottomRound"
+	BottomRound.Parent = Topbar
+	BottomRound.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	BottomRound.BackgroundTransparency = 1.000
+	BottomRound.BorderSizePixel = 0
+	BottomRound.Position = UDim2.new(0, 0, 7.11403608, 0)
+	BottomRound.Size = UDim2.new(1, 0, 0.543858647, 0)
+	BottomRound.Image = "rbxassetid://3570695787"
+	BottomRound.ImageColor3 = Color3.fromRGB(33, 33, 33)
+	BottomRound.ScaleType = Enum.ScaleType.Slice
+	BottomRound.SliceCenter = Rect.new(100, 100, 100, 100)
+	BottomRound.SliceScale = 0.120
+
+	LowerCover.Name = "LowerCover"
+	LowerCover.Parent = Topbar
+	LowerCover.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+	LowerCover.BorderSizePixel = 0
+	LowerCover.Position = UDim2.new(0, 0, 7.11403608, 0)
+	LowerCover.Size = UDim2.new(1, 0, 0.254969656, 0)
+
+	UpperCover.Name = "UpperCover"
+	UpperCover.Parent = Topbar
+	UpperCover.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+	UpperCover.BorderSizePixel = 0
+	UpperCover.Position = UDim2.new(0.255278319, 0, 0.447368234, 0)
+	UpperCover.Size = UDim2.new(0.744721711, 0, 0.552631736, 0)
+
+	Title.Name = "Title"
+	Title.Parent = Topbar
+	Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Title.BackgroundTransparency = 1.000
+	Title.Position = UDim2.new(0.213051826, 0, 0.13333334, 0)
+	Title.Size = UDim2.new(0.57197696, 0, 0.711111069, 0)
+	Title.Font = Enum.Font.Oswald
+	Title.Text = "Default Title"
+	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Title.TextSize = 40.000
+	Title.TextWrapped = true
+	
+	Title.Text = _Title
+	
+	if _CanDrag then
+		Topbar.Draggable = true
+		Topbar.Active = true
+	end
+	
+	if _CanToggle then
+		UserInputService.InputEnded:Connect(function(Input, GameProcessed)
+			if GameProcessed then return end
+			
+			if Input.KeyCode == _ToggleKeybind then
+				UILibrary.Enabled = not UILibrary.Enabled
+			end
+		end)
+	end
+end
+
+return UiLib
