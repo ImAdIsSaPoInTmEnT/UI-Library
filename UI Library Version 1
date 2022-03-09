@@ -11,6 +11,7 @@ function UiLib:NewWindow(_Title, _CanDrag, _CanToggle, _ToggleKeybind)
 	if _CanToggle == nil or typeof(_CanToggle) ~= 'boolean' then return nil end
 	print(4)
 	if _CanToggle then
+		print(typeof(_ToggleKeybind)
 		if _ToggleKeybind == nil or typeof(_ToggleKeybind) ~= 'Enum' then return nil end
 	end
 	print(5)
