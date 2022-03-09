@@ -36,6 +36,7 @@ function UiLib:NewWindow(_Title, _CanDrag, _CanToggle, _ToggleKeybind)
 
 	syn.protect_gui(UILibrary)
 
+	UiLibrary.ResetOnSpawn = false
 	UILibrary.Parent = game.CoreGui
 
 	Topbar.Name = "Topbar"
